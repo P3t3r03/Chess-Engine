@@ -1,0 +1,3 @@
+/Users/peterleyden/projects/Chess-Engine/build/CMakeFiles/test.dir
+/Users/peterleyden/projects/Chess-Engine/build/CMakeFiles/edit_cache.dir
+/Users/peterleyden/projects/Chess-Engine/build/CMakeFiles/rebuild_cache.dir
