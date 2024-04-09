@@ -792,8 +792,11 @@ CMakeFiles/test.dir/Test.cpp.o: /Users/peterleyden/projects/Chess-Engine/Test.cp
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdarg.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stddef.h \
   /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/stdint.h \
+  /Users/peterleyden/projects/Chess-Engine/Bitboard.hpp \
   /Users/peterleyden/projects/Chess-Engine/Test.hpp
 
+
+/Users/peterleyden/projects/Chess-Engine/Bitboard.hpp:
 
 /Library/Developer/CommandLineTools/usr/lib/clang/15.0.0/include/limits.h:
 
