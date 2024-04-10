@@ -4,9 +4,10 @@
 void print_chessboard(const colour_bitboards &White, const colour_bitboards &Black) { // Doesn't need to be efficient as only used for debugging
     int gridsize = 8;
     if ((White.Colour & Black.Colour) == 0) { 
-        std::cout << std::endl << std::string(2*(gridsize)+1, '-') << std::endl;
+        std::cout << std::endl << "  " << std::string(2*(gridsize)+1, '-') << std::endl;
         std::string piecesymbols = "PNBRQKpnbrqk";
         for (int rank = gridsize; rank > 0; rank--) {
+            std::cout << rank << " ";
             for (int col = 1; col < gridsize + 1; col++) { //gridsize + 1 due to how the coords to index is calculated.
                 std::cout << "|";
                 char piece = ' ';
@@ -24,8 +25,9 @@ void print_chessboard(const colour_bitboards &White, const colour_bitboards &Bla
                 else if(get_bit(Black.K, coords_to_index(rank, col))) piece = piecesymbols[11];
                 std::cout << piece;
             }
-            std::cout << "|" << std::endl << std::string(2*(gridsize)+1, '-') << std::endl;
+            std::cout << "|" << std::endl << "  " << std::string(2*(gridsize)+1, '-') << std::endl;
         }
+        std::cout << "   A B C D E F G H" << std::endl;
 
     }
 }

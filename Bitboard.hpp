@@ -6,18 +6,22 @@
 #include<iostream>
 #include<vector>
 
-template<typename T>
-bool get_bit(const T num, const int index);
+template<typename T, typename I>
+bool get_bit(const T num, const I index) {
+    return num & (static_cast<T>(1) << index);
+}
 
 template<typename T>
-bool get_bit(const T num, const uint8_t index);
-
+void set_bit_true(T &num, const int index) {
+    T mask = (static_cast<T>(1)) << index; 
+    num |= mask;
+}
 
 template<typename T>
-T set_bit_true(T num, const int index);
-
-template<typename T>
-T set_bit_false(T num, const int index);
+void set_bit_false(T &num, const int index) {
+    T mask = (static_cast<T>(1)) << index; 
+    num &= ~mask;
+}
 /* Chess Board
  These represent the bits e.g the white king is on bit 3
 
@@ -57,9 +61,6 @@ uint16_t indices_to_move(uint8_t index_from, uint8_t index_to, uint8_t specials)
 std::vector<uint8_t> move_to_indices(const uint16_t move);
 
 void print_bitboard(const uint64_t bitboard);
-
-
-
 
 
 #endif

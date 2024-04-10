@@ -42,5 +42,8 @@ int main() {
     print_bitboard(num2);
     
     print_chessboard(game.W_bitboards, game.B_bitboards);
+
+    set_bit_true(game.B_bitboards.K, 33);
+    print_chessboard(game.W_bitboards, game.B_bitboards);
     return 0;
 }

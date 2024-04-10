@@ -1,27 +1,27 @@
 #include "Bitboard.hpp"
 
-template<typename T>
-bool get_bit(const T num, const int index) {
-    return num & (static_cast<T>(1) << index);
-}
+/* Chess Board
+ These represent the bits e.g the white king is on bit 3
 
-template<typename T>
-bool get_bit(const T num, const uint8_t index) {
-    return num & (static_cast<T>(1) << index);
-}
+8   56  57  58  59  60  61  62  63
+7
+6
+5
+4
+3   16  17 ETC
+2   8   9   10  11  12  13  14  15  
+1   0   1   2   3   4   5   6   7
+    A   B   C   D   E   F   G   H
 
-template<typename T>
-T set_bit_true(T num, const int index) {
-    T mask = (static_cast<T>(1)) << index; 
-    return mask | num;
-}
 
-template<typename T>
-T set_bit_false(T num, const int index) {
-    T mask = (static_cast<T>(1)) << index; 
-    return (~mask) & num;
-}
+Moves 16 bit representation
+S is any special flag
+T is the square being moved too
+F is the square being moved from
+6 bits represent 64 different states same as above.
 
+SSSS TTTT TTFF FFFF
+*/
 int bit_rank(uint64_t num) { //Assumes only 1 set bit
     if(num == 0) {
         return -1;
@@ -67,7 +67,7 @@ uint16_t indices_to_move(uint8_t index_from, uint8_t index_to, uint8_t specials)
     return move;
 }
 
-// Indices vecotr in form [From, To, Special]
+// Indices vector in form [From, To, Special]
 std::vector<uint8_t> move_to_indices(const uint16_t move) {
     std::vector<uint8_t> indices;
     indices.push_back(static_cast<uint8_t>(move & 0x3F));
