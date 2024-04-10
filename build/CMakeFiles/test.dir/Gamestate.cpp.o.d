@@ -1,5 +1,6 @@
-CMakeFiles/test.dir/Test.cpp.o: \
-  /Users/peterleyden/projects/Chess-Engine/Test.cpp \
+CMakeFiles/test.dir/Gamestate.cpp.o: \
+  /Users/peterleyden/projects/Chess-Engine/Gamestate.cpp \
+  /Users/peterleyden/projects/Chess-Engine/Gamestate.hpp \
   /Users/peterleyden/projects/Chess-Engine/Bitboard.hpp \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/c++/v1/stdint.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/c++/v1/__config \
@@ -790,5 +791,4 @@ CMakeFiles/test.dir/Test.cpp.o: \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/sys/_types/_fsfilcnt_t.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/_types/_nl_item.h \
   /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/c++/v1/__bsd_locale_defaults.h \
-  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/c++/v1/cstdarg \
-  /Users/peterleyden/projects/Chess-Engine/Gamestate.hpp
+  /Library/Developer/CommandLineTools/SDKs/MacOSX14.2.sdk/usr/include/c++/v1/cstdarg

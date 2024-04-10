@@ -129,6 +129,54 @@ test/fast:
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/build
 .PHONY : test/fast
 
+Bitboard.o: Bitboard.cpp.o
+.PHONY : Bitboard.o
+
+# target to build an object file
+Bitboard.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Bitboard.cpp.o
+.PHONY : Bitboard.cpp.o
+
+Bitboard.i: Bitboard.cpp.i
+.PHONY : Bitboard.i
+
+# target to preprocess a source file
+Bitboard.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Bitboard.cpp.i
+.PHONY : Bitboard.cpp.i
+
+Bitboard.s: Bitboard.cpp.s
+.PHONY : Bitboard.s
+
+# target to generate assembly for a file
+Bitboard.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Bitboard.cpp.s
+.PHONY : Bitboard.cpp.s
+
+Gamestate.o: Gamestate.cpp.o
+.PHONY : Gamestate.o
+
+# target to build an object file
+Gamestate.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Gamestate.cpp.o
+.PHONY : Gamestate.cpp.o
+
+Gamestate.i: Gamestate.cpp.i
+.PHONY : Gamestate.i
+
+# target to preprocess a source file
+Gamestate.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Gamestate.cpp.i
+.PHONY : Gamestate.cpp.i
+
+Gamestate.s: Gamestate.cpp.s
+.PHONY : Gamestate.s
+
+# target to generate assembly for a file
+Gamestate.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/test.dir/build.make CMakeFiles/test.dir/Gamestate.cpp.s
+.PHONY : Gamestate.cpp.s
+
 Test.o: Test.cpp.o
 .PHONY : Test.o
 
@@ -162,6 +210,12 @@ help:
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
 	@echo "... test"
+	@echo "... Bitboard.o"
+	@echo "... Bitboard.i"
+	@echo "... Bitboard.s"
+	@echo "... Gamestate.o"
+	@echo "... Gamestate.i"
+	@echo "... Gamestate.s"
 	@echo "... Test.o"
 	@echo "... Test.i"
 	@echo "... Test.s"

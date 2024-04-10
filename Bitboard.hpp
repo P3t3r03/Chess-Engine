@@ -2,24 +2,22 @@
 #define __bit_operations__
 
 #include<stdint.h>
+#include <cstdint>
 #include<iostream>
+#include<vector>
 
 template<typename T>
-bool get_bit(const T num, const int index) {
-    bool bit = num & ((static_cast<T>(1)) << index);
-    return bit;
-}
+bool get_bit(const T num, const int index);
 
 template<typename T>
-T set_bit_true(T num, const int index) {
-    T mask = (static_cast<T>(1)) << index; 
-    return mask | num;
-}
+bool get_bit(const T num, const uint8_t index);
+
+
 template<typename T>
-T set_bit_false(T num, const int index) {
-    T mask = (static_cast<T>(1)) << index; 
-    return (~mask) & num;
-}
+T set_bit_true(T num, const int index);
+
+template<typename T>
+T set_bit_false(T num, const int index);
 /* Chess Board
  These represent the bits e.g the white king is on bit 3
 
@@ -41,41 +39,25 @@ F is the square being moved from
 
 SSSS TTTT TTFF FFFF
 */
-template<typename T>
-int bit_rank(T num) { //Assumes only 1 set bit
-    if(num == 0) {
-        return -1;
-    }
-    int rank = 1;
-    while ((num & 0xFF) == 0) {
-        rank++;
-        num >>= 8;
-    }
-    return rank;
-}
-template<typename T>
-int bit_col(T num) { //Assumes only 1 set bit
-    if(num == 0) {
-        return -1;
-    }
-    int col = 1;
-    while ((num & 0x0101010101010101) == 0) {
-        col++;
-        num >>= 1;
-    }
-    return col;
-}
-uint8_t coords_to_index(const int rank, const int col) {
-    uint8_t index = static_cast<uint8_t>((rank-1)*8 + (col - 1));
-    return index;
-}
+
+int bit_rank(uint64_t num); // Assumes 1 set bit
+
+int bit_col(uint64_t num); // Assumes 1 set bit
+
+uint8_t coords_to_index(const int rank, const int col);
+
+
+// Coords vector in form [rank, column]
+std::vector<int> index_to_coords(const uint8_t index);
+
 // Assembles into form SSSS TTTT TTFF FFFF
-uint16_t indexs_to_move(uint8_t index_from, uint8_t index_to, uint8_t specials) {
-    uint16_t move = (static_cast<uint16_t>(specials)) << 12;
-    move = move | ((static_cast<uint16_t>(index_to)) << 6);
-    move = move | (static_cast<uint16_t>(index_from));
-    return move;
-}
+uint16_t indices_to_move(uint8_t index_from, uint8_t index_to, uint8_t specials);
+
+// Indices vecotr in form [From, To, Special]
+std::vector<uint8_t> move_to_indices(const uint16_t move);
+
+void print_bitboard(const uint64_t bitboard);
+
 
 
 

@@ -4,6 +4,9 @@ project(Chess-Engine)
 
 # Add the executable target
 add_executable(test
-    Test.hpp
-    Test.cpp 
+    Bitboard.hpp
+    Bitboard.cpp
+    Gamestate.hpp
+    Gamestate.cpp
+    Test.cpp
 )
