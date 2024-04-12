@@ -31,3 +31,19 @@ void print_chessboard(const colour_bitboards &White, const colour_bitboards &Bla
 
     }
 }
+
+std::vector<uint16_t> possible_moves(game_state &game) {
+    colour_bitboards current;
+    colour_bitboards opposition;
+    if (game.turn) {
+        current = game.W_bitboards;
+        opposition = game.B_bitboards;
+    }
+    else {
+        current = game.B_bitboards;
+        opposition = game.W_bitboards;
+    }
+    current.Colour = current.P | current.N | current.B | current.R | current.Q | current.K;
+    opposition.Colour = opposition.P | opposition.N | opposition.B | opposition.R | opposition.Q | opposition.K;
+    
+}

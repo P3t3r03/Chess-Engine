@@ -92,3 +92,15 @@ void print_bitboard(const uint64_t bitboard) {
         std::cout << "|" << std::endl << std::string(2*(gridsize)+1, '-') << std::endl;
     }
 }
+
+void move_piece_regular(uint64_t &bitboard, const uint16_t move) {
+    std::vector<uint8_t> indices = move_to_indices(move);
+    set_bit_false(bitboard, indices[0]);
+    set_bit_true(bitboard, indices[1]);
+}
+void move_piece_capture(uint64_t &bitboard_move, uint64_t &bitboard_remove, uint16_t move) {
+    std::vector<uint8_t> indices = move_to_indices(move);
+    set_bit_false(bitboard_move, indices[0]);
+    set_bit_false(bitboard_remove, indices[1]);
+    set_bit_true(bitboard_move, indices[1]);
+}

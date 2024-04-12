@@ -62,5 +62,9 @@ std::vector<uint8_t> move_to_indices(const uint16_t move);
 
 void print_bitboard(const uint64_t bitboard);
 
+void move_piece_regular(uint64_t &bitboard, const uint16_t move);
+
+void move_piece_capture(uint64_t &bitboard_move, uint64_t &bitboard_remove, const uint16_t move);
+
 
 #endif
