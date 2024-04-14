@@ -50,7 +50,7 @@ uint8_t bit_col(uint64_t num); // Assumes 1 set bit
 
 uint8_t coords_to_index(const uint8_t rank, const uint8_t col);
 
-std::vector<uint8_t> multiple_coords_to_indices(uint64_t bitboard); //returns the indices for bitboards
+std::vector<uint8_t> multiple_bits_to_indices(uint64_t bitboard); //returns the indices for bitboards
 // with multiple bits set true
 
 

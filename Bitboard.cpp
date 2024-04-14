@@ -22,17 +22,28 @@ F is the square being moved from
 
 SSSS TTTT TTFF FFFF
 */
-uint8_t bit_rank(uint64_t num) { //Assumes only 1 set bit
+
+// File and Rank Masks
+
+const uint64_t Rank_Mask[8] = {
+    0xFF, 0xFF00, 0xFF0000, 0xFF000000, 0xFF00000000, 0xFF0000000000,
+    0xFF000000000000, 0xFF00000000000000
+};
+
+const uint64_t File_Mask[8] = {
+    0x101010101010101, 0x202020202020202, 0x404040404040404, 0x808080808080808,
+    0x1010101010101010, 0x2020202020202020, 0x4040404040404040, 0x8080808080808080,
+};
+
+uint8_t bit_rank(uint64_t num) {
     uint8_t rank = 0;
-    if(num == 0) {
+    if (num == 0) {
         return rank;
     }
-    rank = 1;
-    while ((num & 0xFF) == 0) {
-        rank++;
-        num >>= 8;
+    while ((num & Rank_Mask[rank]) == 0) {
+        ++rank;
     }
-    return rank;
+    return rank + 1; // Adjust to convert rank index to rank number (1-indexed)
 }
 
 uint8_t bit_col(uint64_t num) { //Assumes only 1 set bit
@@ -40,17 +51,29 @@ uint8_t bit_col(uint64_t num) { //Assumes only 1 set bit
     if(num == 0) {
         return col;
     }
-    col = 1;
-    while ((num & 0x0101010101010101) == 0) {
-        col++;
-        num >>= 1;
+    while ((num & File_Mask[col]) == 0) {
+        ++col;
     }
-    return col;
+    return col+ 1;
 }
 
 uint8_t coords_to_index(const uint8_t rank, const uint8_t col) {
     uint8_t index = static_cast<uint8_t>((rank-1)*8 + (col - 1));
     return index;
+}
+
+std::vector<uint8_t> multiple_bits_to_indices(uint64_t bitboard) {
+    std::vector<uint8_t> indices;
+    uint8_t rank, col, index;
+    while(bitboard != 0){
+        rank = bit_rank(bitboard);
+        col = bit_col(bitboard & Rank_Mask[rank - 1]);
+        index = coords_to_index(rank, col);
+        indices.push_back(index);
+        set_bit_false(bitboard, index);
+    }
+    return indices;
+    
 }
 
 // Coords vector in form [rank, column]

@@ -1,5 +1,7 @@
 #include "Gamestate.hpp"
 #include <string>
+#include <algorithm>
+
 
 void print_chessboard(const colour_bitboards &White, const colour_bitboards &Black) { // Doesn't need to be efficient as only used for debugging
     int gridsize = 8;
@@ -32,9 +34,28 @@ void print_chessboard(const colour_bitboards &White, const colour_bitboards &Bla
     }
 }
 
+// vector[0] is the updated current squares vector[1] is the updated to squares this function checks if
+// there are pieces of any colour on the to square and removes it from the list
+std::vector<std::vector<uint8_t> > regular_move_onto_another_piece_check(std::vector<uint8_t> &current_squares, std::vector<uint8_t> &to_squares, uint64_t &bitboard_all) {
+        std::cout << current_squares.size() << std:: endl;
+        for(int i = current_squares.size() - 1; i >= 0; i--){  // Iterates in reverse so we don't skip over any elements
+            if (get_bit(bitboard_all, to_squares[i])) {
+                current_squares.erase(current_squares.begin() + i);
+                to_squares.erase(to_squares.begin() + i);
+                std::cout << current_squares.size() << std:: endl;
+            }
+        }
+        std::vector<std::vector<uint8_t> > valid_to_and_from;
+        valid_to_and_from.push_back(current_squares);
+        valid_to_and_from.push_back(to_squares);
+        return valid_to_and_from;
+}
+
+
 std::vector<uint16_t> possible_moves(game_state &game) {
     colour_bitboards current;
     colour_bitboards opposition;
+    std::vector<uint16_t> moves;
     if (game.turn) {
         current = game.W_bitboards;
         opposition = game.B_bitboards;
@@ -45,5 +66,25 @@ std::vector<uint16_t> possible_moves(game_state &game) {
     }
     current.Colour = current.P | current.N | current.B | current.R | current.Q | current.K;
     opposition.Colour = opposition.P | opposition.N | opposition.B | opposition.R | opposition.Q | opposition.K;
-    
+    uint64_t bitboard_all = current.Colour | opposition.Colour;
+
+    // Generate Current Pawn Moves
+    std::cout << "got here" << std::endl;
+    std::vector<uint8_t> Current_Pawn_squares = multiple_bits_to_indices(current.P);
+    std::vector<uint8_t> Current_pawn_to_squares;
+    std::cout << "got here 3" << std::endl;
+    if(game.turn) {
+        Current_pawn_to_squares = multiple_bits_to_indices(current.P << 8);
+    }
+    else {
+        Current_pawn_to_squares = multiple_bits_to_indices(current.P >> 8);
+    }
+    std::cout << "got here 3" << std::endl;
+    std::vector<std::vector<uint8_t> > pawn_valid_indices = regular_move_onto_another_piece_check(Current_Pawn_squares,
+                                                                            Current_pawn_to_squares, bitboard_all);
+    uint8_t special = 0;
+    for(int i = 0; i < pawn_valid_indices[0].size(); i++) {
+        moves.push_back(indices_to_move(pawn_valid_indices[0][i], pawn_valid_indices[1][i], special));
+    }
+    return moves;
 }
