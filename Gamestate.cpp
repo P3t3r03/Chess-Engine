@@ -69,17 +69,14 @@ std::vector<uint16_t> possible_moves(game_state &game) {
     uint64_t bitboard_all = current.Colour | opposition.Colour;
 
     // Generate Current Pawn Moves
-    std::cout << "got here" << std::endl;
     std::vector<uint8_t> Current_Pawn_squares = multiple_bits_to_indices(current.P);
     std::vector<uint8_t> Current_pawn_to_squares;
-    std::cout << "got here 3" << std::endl;
     if(game.turn) {
         Current_pawn_to_squares = multiple_bits_to_indices(current.P << 8);
     }
     else {
         Current_pawn_to_squares = multiple_bits_to_indices(current.P >> 8);
     }
-    std::cout << "got here 3" << std::endl;
     std::vector<std::vector<uint8_t> > pawn_valid_indices = regular_move_onto_another_piece_check(Current_Pawn_squares,
                                                                             Current_pawn_to_squares, bitboard_all);
     uint8_t special = 0;
