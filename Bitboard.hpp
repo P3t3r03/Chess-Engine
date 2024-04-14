@@ -44,15 +44,18 @@ F is the square being moved from
 SSSS TTTT TTFF FFFF
 */
 
-int bit_rank(uint64_t num); // Assumes 1 set bit
+uint8_t bit_rank(uint64_t num); // Assumes 1 set bit
 
-int bit_col(uint64_t num); // Assumes 1 set bit
+uint8_t bit_col(uint64_t num); // Assumes 1 set bit
 
-uint8_t coords_to_index(const int rank, const int col);
+uint8_t coords_to_index(const uint8_t rank, const uint8_t col);
+
+std::vector<uint8_t> multiple_coords_to_indices(uint64_t bitboard); //returns the indices for bitboards
+// with multiple bits set true
 
 
 // Coords vector in form [rank, column]
-std::vector<int> index_to_coords(const uint8_t index);
+std::vector<uint8_t> index_to_coords(const uint8_t index);
 
 // Assembles into form SSSS TTTT TTFF FFFF
 uint16_t indices_to_move(uint8_t index_from, uint8_t index_to, uint8_t specials);
@@ -60,7 +63,7 @@ uint16_t indices_to_move(uint8_t index_from, uint8_t index_to, uint8_t specials)
 // Indices vecotr in form [From, To, Special]
 std::vector<uint8_t> move_to_indices(const uint16_t move);
 
-void print_bitboard(const uint64_t bitboard);
+void print_bitboard(const uint64_t &bitboard);
 
 void move_piece_regular(uint64_t &bitboard, const uint16_t move);
 

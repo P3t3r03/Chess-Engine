@@ -18,30 +18,37 @@ int main() {
     game.B_bitboards.Q = 0x800000000000000;
     game.B_bitboards.K = 0x1000000000000000;
     game.B_bitboards.Colour = 0xFFFF000000000000;
+    uint64_t num1 = 0x0000000000000800;
+    uint64_t num2 = 0x0000000000000004;
 
-    print_bitboard(game.B_bitboards.Colour);
-
-    int rank1, rank2, col1, col2;
+    uint8_t rank1, rank2, col1, col2;
+    rank1 = bit_rank(num1);
+    rank2 = bit_rank(num2);
+    col1 = bit_col(num1);
+    col2 = bit_col(num2);
+    print_bitboard(num1);
+    
     uint8_t index1, index2;
 
     
-    index2 = coords_to_index(3,1);
-    std::cout << "Rank 2: " << rank2 << std::endl;
-    std::cout << "Column 2: " << col2 << std::endl;
-    index1 = coords_to_index(2,1);
-    std::cout << "Index 2: " << static_cast<int>(index2) << std::endl;
+    index1 = coords_to_index(rank1,col1);
+    std::cout << "Rank 1: " << static_cast<int>(rank1) << std::endl;
+    std::cout << "Column 1: " << static_cast<int>(col1) << std::endl;
+    index2 = coords_to_index(rank2,col2);
+    std::cout << "Index 1: " << static_cast<int>(index1) << std::endl;
     uint8_t special = 0;
     uint16_t move = indices_to_move(index1, index2, special);
     std::cout << "Move: " << static_cast<int>(move) << std::endl;
     std::vector<uint8_t> indices = move_to_indices(move);
-    std::cout << "Index 2; " << static_cast<int>(indices[1]) << std::endl;
-    std::vector<int> coords = index_to_coords(indices[1]);
-    std::cout << "Rank/Column 2: " << coords[0] << "/" << coords[1] << std::endl;
-    
+    std::cout << "Index 1; " << static_cast<int>(indices[0]) << std::endl;
+    std::vector<uint8_t> coords = index_to_coords(indices[0]);
+    std::cout << "Rank/Column 1: " << static_cast<int>(coords[0]) << "/" << static_cast<int>(coords[1]) << std::endl;
+    /*
     print_chessboard(game.W_bitboards, game.B_bitboards);
     move_piece_regular(game.W_bitboards.P, move);
     print_bitboard(game.W_bitboards.P);
     print_chessboard(game.W_bitboards, game.B_bitboards);
+    */
 
     return 0;
 }
