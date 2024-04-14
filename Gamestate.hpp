@@ -23,7 +23,10 @@ struct game_state {
 void print_chessboard(const colour_bitboards &White, const colour_bitboards &Black);
 
 std::vector<std::vector<uint8_t> > regular_move_onto_another_piece_check(std::vector<uint8_t> &current_squares,
-                                                         std::vector<uint8_t> &to_squares, uint64_t &bitboard_all);
+                                                         std::vector<uint8_t> &to_squares, const uint64_t &bitboard_all);
+
+std::vector<std::vector<uint8_t> > double_pawn_move_check(std::vector<uint8_t> &current_squares,
+                                                             const uint64_t &bitboard_all);
 
 std::vector<uint16_t> possible_moves(game_state &game);
 

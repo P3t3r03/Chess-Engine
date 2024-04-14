@@ -43,6 +43,9 @@ F is the square being moved from
 
 SSSS TTTT TTFF FFFF
 */
+extern const uint64_t Rank_Mask[8];
+
+extern const uint64_t File_Mask[8];
 
 uint8_t bit_rank(uint64_t num); // Assumes 1 set bit
 

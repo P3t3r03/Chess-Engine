@@ -10,3 +10,6 @@ add_executable(test
     Gamestate.cpp
     Test.cpp
 )
+
+# Specify C++ standard
+target_compile_features(test PRIVATE cxx_std_20)

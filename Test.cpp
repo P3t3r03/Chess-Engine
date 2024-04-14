@@ -26,7 +26,7 @@ int main() {
     rank2 = bit_rank(num2);
     col1 = bit_col(num1);
     col2 = bit_col(num2);
-    print_bitboard(num1);
+    print_bitboard(game.W_bitboards.N);
     print_bitboard(num1 << 8);
     
     uint8_t index1, index2;
@@ -44,8 +44,7 @@ int main() {
     std::cout << "Index 1; " << static_cast<int>(indices[0]) << std::endl;
     std::vector<uint8_t> coords = index_to_coords(indices[0]);
     std::cout << "Rank/Column 1: " << static_cast<int>(coords[0]) << "/" << static_cast<int>(coords[1]) << std::endl;
-
-    std::vector<uint8_t> multiple_indices = multiple_bits_to_indices(0x100000000);
+    std::vector<uint8_t> multiple_indices = multiple_bits_to_indices(0x1000F0000);
     print_bitboard(0x8080808080808080);
     for (int i = 0; i < multiple_indices.size(); i++) {
         std::cout << "Index " << i << ": " << static_cast<int>(multiple_indices[i]) << std::endl;
@@ -65,7 +64,7 @@ int main() {
         move_piece_regular(game.W_bitboards.P, pawn_1_moves[i]);
         print_bitboard(game.W_bitboards.P);
     }
-    
+
 
     return 0;
 }
